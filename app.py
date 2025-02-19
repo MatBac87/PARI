@@ -73,7 +73,8 @@ def calculate():
     if st.session_state.first_num is not None and st.session_state.display:
         try:
             num2 = int(st.session_state.display)
-            if not (controlla_pari(st.session_state.first_num) or not (controlla_pari(num2)):
+            # Correzione della condizione con parentesi bilanciate
+            if not controlla_pari(st.session_state.first_num) or not controlla_pari(num2):
                 st.error("Entrambi i numeri devono essere pari!")
                 reset()
                 return
