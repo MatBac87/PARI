@@ -8,7 +8,7 @@ st.set_page_config(page_title="Calcolatrice Pari 🧮", page_icon="🧮", layout
 st.markdown("""
     <style>
         .stButton>button {
-            width: 100px;
+            width: 80px;
             height: 50px;
             font-size: 20px;
             margin: 5px;
@@ -17,6 +17,10 @@ st.markdown("""
         .stTextInput>div>div>input {
             font-size: 24px !important;
             text-align: right;
+        }
+        .stWarning {
+            background-color: #665c0d !important;
+            color: white !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -82,8 +86,8 @@ st.title("Calcolatrice Pari 🧮")
 # Display della calcolatrice
 st.text_input("", value=st.session_state.display, key="calc_display", disabled=True)
 
-# Griglia pulsanti
-col1, col2, col3, col4 = st.columns(4)
+# Griglia pulsanti migliorata con colonne fisse
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
 with col1:
     st.button("7", on_click=update_display, args=("7",))
@@ -110,5 +114,5 @@ with col4:
     st.button("+", on_click=set_operation, args=("+",))
 
 # Messaggio di avviso
-st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.")
+st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.", icon="⚠️")
 
