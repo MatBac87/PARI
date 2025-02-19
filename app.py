@@ -4,10 +4,9 @@ from operator import add, sub, mul, truediv
 # Configurazione della pagina
 st.set_page_config(page_title="Calcolatrice Pari 🧮", page_icon="🧮", layout="centered")
 
-# Stile CSS personalizzato con colorazione specifica
+# Stile CSS personalizzato con colori migliorati
 st.markdown("""
     <style>
-        /* Stile base per tutti i pulsanti */
         .stButton>button {
             width: 80px;
             height: 50px;
@@ -18,31 +17,34 @@ st.markdown("""
             transition: all 0.3s ease;
         }
         
-        /* Colori specifici per ogni operazione */
+        /* Divisione - Verde */
         div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(1) {
-            background-color: #4CAF50 !important; /* Verde per divisione */
+            background-color: #4CAF50 !important;
             color: white !important;
         }
         
+        /* Moltiplicazione - Marrone */
         div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(2) {
-            background-color: #795548 !important; /* Marrone per moltiplicazione */
+            background-color: #795548 !important;
             color: white !important;
         }
         
+        /* Sottrazione - Blu */
         div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(3) {
-            background-color: #2196F3 !important; /* Blu per sottrazione */
+            background-color: #2196F3 !important;
             color: white !important;
         }
         
+        /* Addizione - Rosso */
         div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(4) {
-            background-color: #F44336 !important; /* Rosso per addizione */
+            background-color: #F44336 !important;
             color: white !important;
         }
         
-        /* Stile display */
         .stTextInput>div>div>input {
             font-size: 24px !important;
             text-align: right !important;
+            color: #333 !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -99,7 +101,7 @@ def reset():
 
 # Interfaccia utente
 st.title("Calcolatrice Pari 🧮")
-st.text_input("Display", value=st.session_state.display, key="display", disabled=True)
+display = st.text_input("Display", value=st.session_state.display, key="display", disabled=True)
 
 # Layout pulsanti
 col1, col2, col3, col4 = st.columns(4)
