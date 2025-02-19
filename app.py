@@ -115,9 +115,8 @@ with col3:
 with col4:
     st.button("÷", on_click=set_operation, args=("÷",), key="divisione")
     st.button("×", on_click=set_operation, args=("×",), key="moltiplicazione")
-    st.button("-", on_click=set_operation, args=("-",), key="sottrazione")
-    st.button("+", on_click=set_operation, args=("+",), key="addizione")
-    st.button("×", on_click=set_operation, args=("TEST",), key="moltiplicazionee")
+    st.button("-", on_click=set_operation, args=("-",), key="sottrazionee")
+    st.button("+", on_click=set_operation, args=("+",), key="addizionee")
 
 st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari chiaro?.")
 
