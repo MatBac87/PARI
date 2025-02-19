@@ -15,10 +15,10 @@ st.markdown("""
             border-radius: 10px;
             border: none;
         }
-        .addizione {background-color: red !important; color: white !important;}
-        .sottrazione {background-color: blue !important; color: white !important;}
-        .moltiplicazione {background-color: brown !important; color: white !important;}
-        .divisione {background-color: green !important; color: white !important;}
+        #button-addizione button {background-color: red !important; color: white !important;}
+        #button-sottrazione button {background-color: blue !important; color: white !important;}
+        #button-moltiplicazione button {background-color: brown !important; color: white !important;}
+        #button-divisione button {background-color: green !important; color: white !important;}
         .stTextInput>div>div>input {
             font-size: 24px !important;
             text-align: right;
@@ -108,7 +108,7 @@ with col3:
     st.button("=", on_click=calculate)
 
 with col4:
-    # Pulsanti delle operazioni corretti
+    # Pulsanti delle operazioni con colori personalizzati
     st.button("÷", on_click=set_operation, args=("÷",), key="divisione")
     st.button("×", on_click=set_operation, args=("×",), key="moltiplicazione")
     st.button("-", on_click=set_operation, args=("-",), key="sottrazione")
