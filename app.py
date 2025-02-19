@@ -4,9 +4,10 @@ from operator import add, sub, mul, truediv
 # Configurazione della pagina
 st.set_page_config(page_title="Calcolatrice Pari 🧮", page_icon="🧮", layout="centered")
 
-# Stile CSS personalizzato per i colori dei pulsanti
+# Stile CSS personalizzato con colorazione specifica
 st.markdown("""
     <style>
+        /* Stile base per tutti i pulsanti */
         .stButton>button {
             width: 80px;
             height: 50px;
@@ -14,19 +15,39 @@ st.markdown("""
             margin: 5px;
             border-radius: 10px;
             border: none;
+            transition: all 0.3s ease;
         }
-        #button-addizione button {background-color: red !important; color: white !important;}
-        #button-sottrazione button {background-color: blue !important; color: white !important;}
-        #button-moltiplicazione button {background-color: brown !important; color: white !important;}
-        #button-divisione button {background-color: green !important; color: white !important;}
+        
+        /* Colori specifici per ogni operazione */
+        div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(1) {
+            background-color: #4CAF50 !important; /* Verde per divisione */
+            color: white !important;
+        }
+        
+        div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(2) {
+            background-color: #795548 !important; /* Marrone per moltiplicazione */
+            color: white !important;
+        }
+        
+        div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(3) {
+            background-color: #2196F3 !important; /* Blu per sottrazione */
+            color: white !important;
+        }
+        
+        div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"]:nth-child(4) button:nth-child(4) {
+            background-color: #F44336 !important; /* Rosso per addizione */
+            color: white !important;
+        }
+        
+        /* Stile display */
         .stTextInput>div>div>input {
             font-size: 24px !important;
-            text-align: right;
+            text-align: right !important;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Inizializzazione dello stato della sessione
+# Inizializzazione stato sessione
 if "display" not in st.session_state:
     st.session_state.display = ""
 if "first_num" not in st.session_state:
@@ -34,25 +55,22 @@ if "first_num" not in st.session_state:
 if "operation" not in st.session_state:
     st.session_state.operation = None
 
-# Funzione per controllare se un numero è pari
+# Funzioni di controllo
 def controlla_pari(num):
     try:
         return int(num) % 2 == 0
     except ValueError:
         return False
 
-# Funzione per aggiornare il display
 def update_display(value):
     st.session_state.display += value
 
-# Funzione per impostare l'operazione
 def set_operation(op):
     if st.session_state.display:
         st.session_state.first_num = int(st.session_state.display)
         st.session_state.operation = op
         st.session_state.display = ""
 
-# Funzione per eseguire il calcolo
 def calculate():
     if st.session_state.first_num is not None and st.session_state.display:
         try:
@@ -71,23 +89,20 @@ def calculate():
             st.session_state.operation = None
             
         except ZeroDivisionError:
-            st.error("❌ Errore: divisione per zero non permessa!")
+            st.error("❌ Errore: divisione per zero!")
             reset()
 
-# Funzione per resettare il display
 def reset():
     st.session_state.display = ""
     st.session_state.first_num = None
     st.session_state.operation = None
 
-# Layout della calcolatrice
+# Interfaccia utente
 st.title("Calcolatrice Pari 🧮")
+st.text_input("Display", value=st.session_state.display, key="display", disabled=True)
 
-# Display della calcolatrice
-st.text_input("", value=st.session_state.display, key="calc_display", disabled=True)
-
-# Griglia pulsanti migliorata con colonne fisse
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+# Layout pulsanti
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.button("7", on_click=update_display, args=("7",))
@@ -108,13 +123,11 @@ with col3:
     st.button("=", on_click=calculate)
 
 with col4:
-    # Pulsanti delle operazioni con colori personalizzati
-    st.button("÷", on_click=set_operation, args=("÷",), key="divisione")
-    st.button("×", on_click=set_operation, args=("×",), key="moltiplicazione")
-    st.button("-", on_click=set_operation, args=("-",), key="sottrazione")
-    st.button("+", on_click=set_operation, args=("+",), key="addizione")
+    st.button("÷", on_click=set_operation, args=("÷",))
+    st.button("×", on_click=set_operation, args=("×",))
+    st.button("-", on_click=set_operation, args=("-",))
+    st.button("+", on_click=set_operation, args=("+",))
 
-# Messaggio di avviso
-st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari chiaro?.", icon="⚠️")
+st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.")
 
 
