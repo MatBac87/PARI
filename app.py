@@ -23,4 +23,4 @@ st.markdown("""
 # Inizializzazione dello stato della sessione
 if "display" not in st.session_state:
     st.session_state.display = ""
-if "first_num" not in
+if "first_num" not in st.session_state:
