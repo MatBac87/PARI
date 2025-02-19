@@ -109,9 +109,9 @@ with col3:
 
 with col4:
     st.button("÷", on_click=set_operation, args=("÷",))
-    st.button("×", on_click=set_operation, args=("×",))
-    st.button("-", on_click=set_operation, args=("-",))
-    st.button("+", on_click=set_operation, args=("+",))
+    st.button("×", on_click=set_operation, args=("TEST PER",))
+    st.button("-", on_click=set_operation, args=("TEST MENO",))
+    st.button("+", on_click=set_operation, args=("TEST PIU",))
 
 # Messaggio di avviso
 st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.", icon="⚠️")
