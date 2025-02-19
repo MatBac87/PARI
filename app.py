@@ -117,6 +117,7 @@ with col4:
     st.button("×", on_click=set_operation, args=("×",), key="moltiplicazione")
     st.button("-", on_click=set_operation, args=("-",), key="sottrazionee")
     st.button("+", on_click=set_operation, args=("+",), key="addizionee")
+    st.button("+", on_click=set_operation, args=("TEST",), key="addizioneTEST")
 
 st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari chiaro?.")
 
