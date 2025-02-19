@@ -115,6 +115,6 @@ with col4:
     st.button("+", on_click=set_operation, args=("+",), key="addizione")
 
 # Messaggio di avviso
-st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.", icon="⚠️")
+st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari chiaro?.", icon="⚠️")
 
 
