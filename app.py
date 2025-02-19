@@ -58,7 +58,6 @@ def calculate():
         try:
             num2 = int(st.session_state.display)
             
-            # Controllo che entrambi i numeri siano pari
             if not controlla_pari(st.session_state.first_num) or not controlla_pari(num2):
                 st.error("⚠️ Entrambi i numeri devono essere pari!")
                 reset()
@@ -109,10 +108,11 @@ with col3:
     st.button("=", on_click=calculate)
 
 with col4:
-    st.markdown('<button class="divisione" onclick="parent.location.reload()">÷</button>', unsafe_allow_html=True)
-    st.markdown('<button class="moltiplicazione" onclick="parent.location.reload()">×</button>', unsafe_allow_html=True)
-    st.markdown('<button class="sottrazione" onclick="parent.location.reload()">-</button>', unsafe_allow_html=True)
-    st.markdown('<button class="addizione" onclick="parent.location.reload()">+</button>', unsafe_allow_html=True)
+    # Pulsanti delle operazioni corretti
+    st.button("÷", on_click=set_operation, args=("÷",), key="divisione")
+    st.button("×", on_click=set_operation, args=("×",), key="moltiplicazione")
+    st.button("-", on_click=set_operation, args=("-",), key="sottrazione")
+    st.button("+", on_click=set_operation, args=("+",), key="addizione")
 
 # Messaggio di avviso
 st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.", icon="⚠️")
