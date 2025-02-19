@@ -4,7 +4,7 @@ from operator import add, sub, mul, truediv
 # Configurazione della pagina
 st.set_page_config(page_title="Calcolatrice Pari 🧮", page_icon="🧮", layout="centered")
 
-# Stile CSS personalizzato per migliorare l'interfaccia
+# Stile CSS personalizzato per i colori dei pulsanti
 st.markdown("""
     <style>
         .stButton>button {
@@ -13,14 +13,15 @@ st.markdown("""
             font-size: 20px;
             margin: 5px;
             border-radius: 10px;
+            border: none;
         }
+        .addizione {background-color: red !important; color: white !important;}
+        .sottrazione {background-color: blue !important; color: white !important;}
+        .moltiplicazione {background-color: brown !important; color: white !important;}
+        .divisione {background-color: green !important; color: white !important;}
         .stTextInput>div>div>input {
             font-size: 24px !important;
             text-align: right;
-        }
-        .stWarning {
-            background-color: #665c0d !important;
-            color: white !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -108,11 +109,12 @@ with col3:
     st.button("=", on_click=calculate)
 
 with col4:
-    st.button("÷", on_click=set_operation, args=("÷",))
-    st.button("×", on_click=set_operation, args=("TEST PER",))
-    st.button("-", on_click=set_operation, args=("TEST MENO",))
-    st.button("+", on_click=set_operation, args=("TEST PIU",))
+    st.markdown('<button class="divisione" onclick="parent.location.reload()">÷</button>', unsafe_allow_html=True)
+    st.markdown('<button class="moltiplicazione" onclick="parent.location.reload()">×</button>', unsafe_allow_html=True)
+    st.markdown('<button class="sottrazione" onclick="parent.location.reload()">-</button>', unsafe_allow_html=True)
+    st.markdown('<button class="addizione" onclick="parent.location.reload()">+</button>', unsafe_allow_html=True)
 
 # Messaggio di avviso
 st.warning("⚠️ Solo numeri pari! I risultati possono essere pari o dispari.", icon="⚠️")
+
 
