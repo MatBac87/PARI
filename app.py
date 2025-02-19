@@ -1,5 +1,4 @@
-import streamlit as st
-pip install streamlit    
+import streamlit as st 
 from operator import add, sub, mul, truediv
 
 # Configurazione della pagina
